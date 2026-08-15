@@ -1,0 +1,161 @@
+{% extends 'core/base.html' %}
+
+{% block title %}CareerCompass Command Center{% endblock %}
+
+{% block extra_style %}
+.welcome-grid {
+display: grid;
+grid-template-columns: 1fr 300px;
+gap: 30px;
+margin-bottom: 40px;
+}
+
+.welcome-info h1 {
+font-size: 2.4rem;
+font-weight: 700;
+margin-bottom: 10px;
+color: white;
+letter-spacing: -0.5px;
+}
+
+.welcome-info p {
+color: var(--text-dim);
+font-size: 1.1rem;
+}
+
+.analytics-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+gap: 24px;
+}
+
+.metric-card {
+text-align: left;
+transition: transform 0.3s ease;
+}
+
+.metric-card:hover { transform: translateY(-5px); }
+
+.metric-card .label {
+font-size: 0.85rem;
+font-weight: 600;
+color: var(--text-dim);
+text-transform: uppercase;
+letter-spacing: 1px;
+margin-bottom: 15px;
+display: block;
+}
+
+.metric-value {
+font-size: 2.8rem;
+font-weight: 700;
+color: var(--primary);
+margin-bottom: 5px;
+}
+
+.metric-trend {
+font-size: 0.9rem;
+font-weight: 500;
+color: #10B981;
+}
+
+.scanner-cta {
+grid-column: 1 / -1;
+margin-top: 20px;
+padding: 80px 60px;
+text-align: center;
+background: rgba(255, 255, 255, 0.02);
+border: 1px dashed var(--border);
+}
+
+.scanner-cta h2 {
+font-size: 2rem;
+margin-bottom: 15px;
+color: white;
+}
+
+.scanner-cta p {
+color: var(--text-dim);
+margin-bottom: 40px;
+max-width: 550px;
+margin-left: auto;
+margin-right: auto;
+font-size: 1.1rem;
+line-height: 1.6;
+}
+
+.btn-primary-gradient {
+padding: 16px 45px;
+background: var(--primary);
+color: white;
+border-radius: 14px;
+font-weight: 700;
+font-size: 1.1rem;
+box-shadow: 0 10px 20px rgba(20, 184, 166, 0.2);
+text-decoration: none;
+display: inline-block;
+transition: all 0.3s ease;
+}
+
+.btn-primary-gradient:hover {
+background: var(--primary-hover);
+transform: translateY(-1px);
+box-shadow: 0 12px 24px rgba(20, 184, 166, 0.3);
+}
+
+.metric-icon {
+font-size: 1.8rem;
+margin-bottom: 20px;
+opacity: 0.9;
+}
+
+.status-badge {
+padding: 8px 16px;
+background: rgba(20, 184, 166, 0.1);
+border: 1px solid var(--primary);
+color: var(--primary);
+border-radius: 30px;
+font-weight: 700;
+font-size: 0.8rem;
+}
+{% endblock %}
+
+{% block content %}
+<div class="welcome-grid">
+    <div class="welcome-info">
+        <h1>Welcome to the Command Center, {{ user.full_name }}</h1>
+        <p>Your current strategic trajectory: <strong>Initial Ingestion Phase</strong></p>
+    </div>
+    <div class="card" style="display: flex; align-items: center; justify-content: center;">
+        <div class="status-badge">SYSTEM READY</div>
+    </div>
+</div>
+
+<div class="analytics-grid">
+    <div class="card metric-card">
+        <div class="metric-icon">📊</div>
+        <span class="label">Career Momentum Analytics</span>
+        <div class="metric-value">0%</div>
+        <div class="metric-trend" style="color: var(--text-dim);">Awaiting Scan</div>
+    </div>
+    <div class="card metric-card">
+        <div class="metric-icon">💡</div>
+        <span class="label">Talent Synthesis Items</span>
+        <div class="metric-value">0</div>
+        <div class="metric-trend" style="color: var(--text-dim);">Static</div>
+    </div>
+    <div class="card metric-card">
+        <div class="metric-icon">🚀</div>
+        <span class="label">Trajectory Alignment</span>
+        <div class="metric-value">None</div>
+        <div class="metric-trend" style="color: var(--text-dim);">Pending Accuracy</div>
+    </div>
+
+    <div class="card scanner-cta">
+        <h2>Initiate Profile Scanner</h2>
+        <p>Your professional foundations have not yet been audited. Commence a full credential intelligence audit to
+            activate your command metrics.</p>
+        <a href="#" class="btn-primary-gradient">Launch Scanner Expedition</a>
+    </div>
+</div>
+{% endblock %}

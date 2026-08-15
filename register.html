@@ -1,0 +1,135 @@
+{% extends 'core/base.html' %}
+
+{% block title %}CareerCompass | Establish Profile{% endblock %}
+
+{% block extra_style %}
+body {
+background-color: #111827;
+background-image: radial-gradient(circle at 80% 20%, #1a2236 0%, #111827 100%);
+}
+
+.auth-wrapper {
+width: 100%;
+max-width: 440px;
+margin: 60px auto;
+padding: 20px;
+}
+
+.auth-card {
+background: rgba(255, 255, 255, 0.03);
+backdrop-filter: blur(20px);
+padding: 50px 40px;
+border-radius: 20px;
+box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+text-align: center;
+border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.auth-card h2 {
+font-size: 2rem;
+font-weight: 700;
+margin-bottom: 8px;
+color: white;
+}
+
+.auth-subtitle {
+color: #94a3b8;
+font-size: 1rem;
+margin-bottom: 40px;
+}
+
+.form-group {
+text-align: left;
+margin-bottom: 24px;
+}
+
+.form-group label {
+display: block;
+margin-bottom: 8px;
+font-size: 0.85rem;
+font-weight: 600;
+color: #cbd5e1;
+}
+
+.form-group input {
+width: 100%;
+padding: 14px 18px;
+border-radius: 12px;
+border: 1px solid rgba(255, 255, 255, 0.1);
+outline: none;
+transition: 0.3s;
+font-size: 1rem;
+background: rgba(255, 255, 255, 0.05);
+color: white;
+}
+
+.form-group input:focus {
+border-color: #14B8A6;
+background: rgba(255, 255, 255, 0.08);
+box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.15);
+}
+
+.btn-auth {
+width: 100%;
+padding: 16px;
+background: #14B8A6;
+color: white;
+border: none;
+border-radius: 12px;
+font-size: 1rem;
+font-weight: 700;
+cursor: pointer;
+transition: all 0.3s ease;
+margin-top: 10px;
+box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+}
+
+.btn-auth:hover {
+background: #0ea5a4;
+transform: translateY(-1px);
+box-shadow: 0 6px 20px rgba(20, 184, 166, 0.4);
+}
+
+.auth-footer {
+margin-top: 30px;
+font-size: 0.95rem;
+color: #94a3b8;
+}
+
+.auth-footer a {
+color: #14B8A6;
+text-decoration: none;
+font-weight: 600;
+}
+
+.sidebar, .top-bar { display: none !important; }
+.main-wrapper { margin-left: 0 !important; }
+{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <h2>Establish Profile</h2>
+        <p class="auth-subtitle">Synchronize Your Professional Trajectory</p>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Full Identity</label>
+                <input type="text" name="full_name" placeholder="Johnathan Doe" required>
+            </div>
+            <div class="form-group">
+                <label>Professional Email</label>
+                <input type="email" name="email" placeholder="name@career.com" required>
+            </div>
+            <div class="form-group">
+                <label>Secure Credential</label>
+                <input type="password" name="password" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn-auth">Initiate Trajectory</button>
+        </form>
+        <div class="auth-footer">
+            Already established? <a href="{% url 'login' %}">Access Portal</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

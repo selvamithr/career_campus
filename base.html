@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CareerCompass{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #14b8a6;
+            /* Teal */
+            --primary-hover: #0ea5a4;
+            /* Darker Teal */
+            --bg-main: #111827;
+            /* Slightly lighter dark blue */
+            --bg-sidebar: rgba(17, 24, 39, 0.8);
+            --text-main: #f1f5f9;
+            --text-dim: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.03);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --card-radius: 16px;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 50% 50%, #1a2236 0%, #111827 100%);
+        }
+
+        /* Layout Structure */
+        .sidebar {
+            width: 280px;
+            background: var(--bg-sidebar);
+            backdrop-filter: blur(12px);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 1000;
+        }
+
+        .main-wrapper {
+            flex: 1;
+            margin-left: 280px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-bar {
+            height: 70px;
+            background: rgba(17, 24, 39, 0.4);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 40px;
+            position: sticky;
+            top: 0;
+            z-index: 900;
+        }
+
+        .content-area {
+            padding: 40px;
+            flex: 1;
+        }
+
+        /* Branding */
+        .sidebar-header {
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-mark {
+            width: 35px;
+            height: 35px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 0 15px rgba(20, 184, 166, 0.4);
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        /* Navigation */
+        .nav-menu {
+            flex: 1;
+            padding: 0 15px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            border-radius: 12px;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            margin-bottom: 5px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border-left: 3px solid var(--primary);
+        }
+
+        .nav-link i {
+            font-size: 1.1rem;
+        }
+
+        /* Generic Card */
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            border-radius: var(--card-radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            padding: 24px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(20, 184, 166, 0.4);
+        }
+
+            {
+            % block extra_style %
+        }
+
+            {
+            % endblock %
+        }
+    </style>
+</head>
+
+<body>
+    {% if user.is_authenticated %}
+    <div class="sidebar">
+        <a href="{% url 'landing' %}" class="sidebar-header">
+            <div class="logo-mark">C</div>
+            <div class="logo-text">Career<span>Compass</span></div>
+        </a>
+        <div class="nav-menu">
+            <a href="{% url 'dashboard' %}"
+                class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                <span>📊</span> CareerCompass Command Center
+            </a>
+            <a href="#" class="nav-link"><span>🔍</span> Profile Scanner</a>
+            <a href="#" class="nav-link"><span>💡</span> Skill Insights</a>
+            <a href="#" class="nav-link"><span>📡</span> Opportunity Radar</a>
+            <a href="#" class="nav-link"><span>🚧</span> Growth Gaps</a>
+            <a href="#" class="nav-link"><span>🧩</span> Learning Navigator</a>
+            <a href="#" class="nav-link"><span>🗺️</span> Success Blueprint</a>
+        </div>
+        <div style="padding: 20px;">
+            <a href="{% url 'logout' %}" class="nav-link" style="color: #EF4444;"><span>🚪</span> Logout</a>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="main-wrapper" style="{% if not user.is_authenticated %}margin-left: 0;{% endif %}">
+        {% if user.is_authenticated %}
+        <div class="top-bar">
+            <!-- User Profile and Avatar -->
+        </div>
+        {% endif %}
+
+        <div class="content area">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    {% block extra_script %}{% endblock %}
+</body>
+
+</html>
